@@ -265,4 +265,9 @@ class UserController extends Controller
             }
         }
     }
+
+    public function practice()
+    {
+        return "Hello";
+    }
 }
