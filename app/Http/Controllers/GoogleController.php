@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-Use Hash;
-Use Auth;
-use Session;
+Use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 Use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
