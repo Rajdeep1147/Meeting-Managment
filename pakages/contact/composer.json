@@ -1,0 +1,15 @@
+{
+    "name": "bitfunes/contact",
+    "description": "This will send email to admin and save contact query",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {},
+    
+    "autoload": {
+        "psr-4": {
+            "Bitfuses\\Contact\\": "src/"
+            
+        }
+    }
+}
