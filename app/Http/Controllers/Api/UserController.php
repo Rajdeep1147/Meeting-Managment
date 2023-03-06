@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\student;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -266,8 +268,111 @@ class UserController extends Controller
         }
     }
 
-    public function practice()
+    public function collapse()
     {
-        return "Hello";
+        $item = collect(['one','two','three']); 
+        $collapse = [
+            [1,2,3],
+            [4,5,6]
+
+        ];  
+        return collect($collapse)->collapse();
+    }
+
+    public function map()
+    {
+        $user =User::all();
+        // $nuser = $user->pluck('email')->all();
+        // return $nuser;
+        return collect([
+            'value1'=>'first',
+            'value2'=>'second',
+        ])->mapWithKeys(function($item,$key){
+            // if($key=='value2'){
+            //     return [];
+            // }
+            // $data = collect([1,2,3,4,5,6,7]);
+            // $co = $data->mapWithKeys(function($keys,$items){
+            //     return [];
+            // });
+            // return $co;
+            return [
+                $key=>$item,
+                $key.'upper'=>strtoupper($item)
+            ];
+        });
+
+        $output = $user->each(function($user){
+            if($user->id%2==0){
+                $user->age = 20;
+            }else{
+                $user->age = 22;
+            }
+            unset($user->created_at,$user->updated_at);
+        });
+        return $output->toArray();
+        $count = $user->count();
+        $newresult = $user->map(function($alldata){
+            return strtoupper($alldata);
+        });
+
+        $item = collect(['one','two','three']);
+        $max = collect([1,43,54])->max();
+        
+            $info = $item->map(function($result){
+          return strtoupper($result);
+           
+        });
+        return $info;
+    }
+
+    public function filter()
+    {
+        $user = student::get();
+        // $output = $user->search(function($user){
+        //     return $user->email =="rajdeep@infotech.in" ;
+        // });
+        $output = $user->filter(function($user){
+            return $user->status ==0 ;
+        });
+        return $output;
+    }
+
+    public function groupBy()
+    {
+        // return student::select('name')->groupBy('name')->get();
+        return student::all()->groupBy('name');
+    }
+
+    public function diff()
+    {
+        $collection =collect([10,20,30]);
+        // return $collection->diffUsing([1,20,22],function($a,$b){
+        //     dd()
+        // });
+        return $collection;
+    }
+
+    public function where()
+    {
+        // return collect([
+        //     ['product'=>'apples','price'=>50],
+        //     ['product'=>'pear','price'=>60],
+        //     ['product'=>'grapes','price'=>70],
+        //     ['product'=>'bananas','price'=>80],
+        //     ['product'=>'coconuts','price'=>100],
+
+        // ])->whereBetween('price',[60,90]);
+
+        // return collect([
+        //     ['product'=>'apples','price'=>50],
+        //     ['product'=>'pear','price'=>60],
+        //     ['product'=>'grapes','price'=>70],
+        //     ['product'=>'bananas','price'=>80],
+        //     ['product'=>'coconuts','price'=>100],
+        // ])->whereIn('price',[50,70,100]);
+
+        return collect([1,2,3,4,5,6])->only(0,1,4);
+
     }
 }

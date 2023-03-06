@@ -43,7 +43,15 @@ Route::delete('user/{id}',[UserController::class,'destroy']);
 Route::put('user/{id}',[UserController::class,'update']);
 Route::patch('change-password/{id}',[UserController::class,'changePassword']);
 
-Route::get('test',[UserController::class,'practice']);
+Route::get('collapse',[UserController::class,'collapse']);
+Route::get('map',[UserController::class,'map']);
+Route::get('filter',[UserController::class,'filter']);
+Route::get('group',[UserController::class,'groupBy']);
+Route::get('where',[UserController::class,'where']);
+
+
+
+
 
 
 
