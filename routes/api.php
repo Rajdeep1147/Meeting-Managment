@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Api\UserController;
-
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,20 @@ Route::get('map',[UserController::class,'map']);
 Route::get('filter',[UserController::class,'filter']);
 Route::get('group',[UserController::class,'groupBy']);
 Route::get('where',[UserController::class,'where']);
+Route::get('test-trait',[UserController::class,'testTrait']);
+
+Route::get('post',[PostController::class,'index']);
+
+Route::get('student',[StudentController::class,'dis']);
+
+Route::get('eluquent-test',[PostController::class,'eluqu']);
+
+
+Route::get('collect',[PostController::class,'collectInfo']);
+
+
+
+
 
 
 

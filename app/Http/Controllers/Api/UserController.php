@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\MyTrait;
 use App\Models\student;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    use MyTrait;
     /**
      * Display a listing of the resource.
      *
@@ -374,5 +376,12 @@ class UserController extends Controller
 
         return collect([1,2,3,4,5,6])->only(0,1,4);
 
+    }
+
+    public function testTrait()
+    {
+        
+        $order = $this->createOrder();
+        return $order;
     }
 }

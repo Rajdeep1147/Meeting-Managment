@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,13 +14,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql2')->create('contacts', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->text('message');
-
+            $table->integer('student_id')->unsigned()->nullable();
+            $table->string('title');
+            $table->integer('status')->default(Post::ACTIVE);
+            $table->string('description');
             $table->timestamps();
+            $table->foreign('student_id')
+            ->references('id')->on('students')
+            ->onDelete('cascade');
         });
     }
 
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('posts');
     }
 };

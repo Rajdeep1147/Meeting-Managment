@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\Models\student;
+
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\student>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Student>
  */
 class StudentFactory extends Factory
 {
@@ -16,22 +16,18 @@ class StudentFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $model = student::class;
     public function definition()
     {
         return [
             'name'=>$this->faker->name(),
             'email'=>$this->faker->unique()->safeEmail(),
             'contact'=>$this->faker->unique()->phoneNumber(),
+            'status'=>$this->faker->randomDigit(0,1),
+            'address'=>$this->faker->address(),
             'password'=>Hash::make("password"),
+            'pincode'=>$this->faker->numerify('######'),
             'email_verified_at'=>now(),
-            'pincode'=> $this->faker->randomNumber(6, true),
-            'status' => $this->faker->randomElement([
-                '0',
-                '1'
-            ]),
             "remember_token"=>Str::random(10),
-            
         ];
     }
 }
