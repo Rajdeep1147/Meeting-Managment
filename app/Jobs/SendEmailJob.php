@@ -36,7 +36,6 @@ class SendEmailJob implements ShouldQueue
         $data ="This is Test Data";
         Mail::to(['rajdeeprangra@gmail.com'])->send(
             new SendEmailTest(data: $data)
-            
         );
     }
 }
