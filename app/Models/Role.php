@@ -9,13 +9,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Role extends Model
 {
     use HasFactory;
+
+    protected $fillable = ["name","slug"];
     
     /**
      * @return HasMany
      */
 
-    public function users(): HasMany
+    public function users()
     {
-        return $this->hasMany(User::class, 'role_user');
+        return $this->belongsToMany(User::class, 'users_roles');
     } 
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class,'roles_permission');
+    }
 }
