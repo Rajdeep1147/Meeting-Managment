@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
                CommentSeeder::class,
                StudentSeeder::class,
                UsersTableSeeder::class,
+               RoleSeeder::class,
                AdminSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
