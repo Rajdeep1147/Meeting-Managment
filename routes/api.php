@@ -51,6 +51,7 @@ Route::get('group',[UserController::class,'groupBy']);
 Route::get('where',[UserController::class,'where']);
 Route::get('test-trait',[UserController::class,'testTrait']);
 
+
 Route::get('post',[PostController::class,'index']);
 
 Route::get('student',[StudentController::class,'dis']);
