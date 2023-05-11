@@ -44,7 +44,6 @@ Route::delete('user/{id}',[UserController::class,'destroy']);
 Route::put('user/{id}',[UserController::class,'update']);
 Route::patch('change-password/{id}',[UserController::class,'changePassword']);
 
-
 Route::get('collapse',[UserController::class,'collapse']);
 Route::get('map',[UserController::class,'map']);
 Route::get('filter',[UserController::class,'filter']);
