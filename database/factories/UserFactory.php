@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
@@ -22,13 +23,16 @@ class UserFactory extends Factory
             'name'=>$this->faker->name(),
             'email'=>$this->faker->unique()->safeEmail(),
             'contact'=>$this->faker->unique()->phoneNumber(),
-            'status'=>$this->faker->randomDigit(0,1),
+            'status'=>$this->faker->numberBetween(0,1),
             'password'=>Hash::make("password"),
             'email_verified_at'=>now(),
             "remember_token"=>Str::random(10),
-        ];
+             ];
+
+           
     }
 
+    
     /**
      * Indicate that the model's email address should be unverified.
      *

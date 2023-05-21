@@ -15,8 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Route::group(['middleware' => ['auth:student']], function () {
+    // Admin routes here
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
