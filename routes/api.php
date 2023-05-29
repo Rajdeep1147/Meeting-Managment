@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SlotController;
 use App\Http\Controllers\StudentController;
 
 /*
@@ -62,12 +64,14 @@ Route::get('eluquent-test',[PostController::class,'eluqu']);
 Route::get('collect',[PostController::class,'collectInfo']);
 
 
+Route::prefix('book-class')->group(function(){
+    Route::get('booking',[ClassesController::class,'booking'])->name('booking');
+    Route::post('bookclass',[ClassesController::class,'bookclass'])->name('book.slote');
 
+    
+});
 
-
-
-
-
-
+Route::resource('classes',ClassesController::class);
+Route::resource('slot',SlotController::class);
 
 

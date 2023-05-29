@@ -2,27 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+use App\Http\Controllers\Controller;
+use App\Models\Slot;
 use Illuminate\Http\Request;
-use App\Jobs\SendEmailJob;
 
-use Illuminate\Support\Facades\Mail;
-
-class StudentController extends Controller
+class SlotController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dis()
+    public function index()
     {
-        $emailJobs = new SendEmailJob();
-        $this->dispatch($emailJobs);
-        
-        
-        return ('Mail Send');
-        
+        //
     }
 
     /**
@@ -32,7 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -43,16 +36,26 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $add_slot = Slot::create([
+            'date'=> $request->date,
+            'start_time'=> $request->start_time,
+            'end_time'=> $request->end_time,
+        ]);
+
+        if(!$add_slot){
+            return response()->json("Error in creating slot",403);
+        }else{
+            return response()->json($add_slot,200);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show($id)
     {
         //
     }
@@ -60,10 +63,10 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit($id)
     {
         //
     }
@@ -72,10 +75,10 @@ class StudentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -83,10 +86,10 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Student  $student
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
         //
     }
