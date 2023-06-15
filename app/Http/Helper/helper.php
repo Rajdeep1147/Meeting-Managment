@@ -1,12 +1,11 @@
-<?php 
-if(function_exists('p'))
-{
+<?php
+
+if (function_exists('p')) {
     function p($data)
     {
-        echo "<pre>";
+        echo '<pre>';
         print_r($data);
-        echo "<pre>";
+        echo '<pre>';
 
     }
 }
-?>

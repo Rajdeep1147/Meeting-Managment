@@ -78,10 +78,10 @@ return [
             'level' => env('LOG_LEVEL', 'critical'),
         ],
 
-        'customlog'=>[
-            'driver'=>'single',
-            'path'=>storage_path('logs/mylogs.log'),
-            'level'=>'info',
+        'customlog' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/mylogs.log'),
+            'level' => 'info',
         ],
 
         'papertrail' => [

@@ -10,9 +10,8 @@ class Student extends Model
 {
     use HasFactory;
 
-    public function posts() :HasMany
+    public function posts(): HasMany
     {
         return $this->hasMany(Post::class, 'student_id', 'id');
     }
-   
 }

@@ -19,15 +19,15 @@ class StudentFactory extends Factory
     public function definition()
     {
         return [
-            'name'=>$this->faker->name(),
-            'email'=>$this->faker->unique()->safeEmail(),
-            'contact'=>$this->faker->unique()->phoneNumber(),
-            'status'=>$this->faker->randomDigit(0,1),
-            'address'=>$this->faker->address(),
-            'password'=>Hash::make("password"),
-            'pincode'=>$this->faker->numerify('######'),
-            'email_verified_at'=>now(),
-            "remember_token"=>Str::random(10),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'contact' => $this->faker->unique()->phoneNumber(),
+            'status' => $this->faker->randomDigit(0, 1),
+            'address' => $this->faker->address(),
+            'password' => Hash::make('password'),
+            'pincode' => $this->faker->numerify('######'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
         ];
     }
 }

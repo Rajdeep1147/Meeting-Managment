@@ -1,8 +1,9 @@
-<?php 
-namespace App\CustomFacade;
-use Carbon\Carbon;
+<?php
 
-class Invoice{
+namespace App\CustomFacade;
+
+class Invoice
+{
     public function dateFormat()
     {
         return 'ABC PRIVATE LIMITED';
@@ -13,5 +14,3 @@ class Invoice{
         return date('d-m-Y');
     }
 }
-
-?>

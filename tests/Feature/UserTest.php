@@ -2,10 +2,8 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Models\User;
+use Tests\TestCase;
 
 class UserTest extends TestCase
 {
@@ -24,14 +22,13 @@ class UserTest extends TestCase
     public function test_user_duplication()
     {
         $user1 = User::make([
-            'name'=>'Dery',
-            'email'=>'dery@allhertweb.com'
-        ]);    
+            'name' => 'Dery',
+            'email' => 'dery@allhertweb.com',
+        ]);
         $user2 = User::make([
-            'name'=>'Dery1',
-            'email'=>'dery@allhertweb.com'
-        ]);  
-        $this->assertTrue($user1->name !=$user2->name);
+            'name' => 'Dery1',
+            'email' => 'dery@allhertweb.com',
+        ]);
+        $this->assertTrue($user1->name != $user2->name);
     }
-    
 }

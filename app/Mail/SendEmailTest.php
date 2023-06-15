@@ -3,16 +3,13 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class SendEmailTest extends Mailable
 {
     use Queueable, SerializesModels;
-    
+
     protected $data;
 
     /**
@@ -32,7 +29,7 @@ class SendEmailTest extends Mailable
      */
     public function build()
     {
-      return $this->view('emails.jobs')
-                ->subject('Queue Job Test');
+        return $this->view('emails.jobs')
+            ->subject('Queue Job Test');
     }
 }

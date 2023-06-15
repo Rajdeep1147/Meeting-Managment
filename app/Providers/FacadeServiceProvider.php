@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\CustomFacade\Invoice;
+use Illuminate\Support\ServiceProvider;
 
 class FacadeServiceProvider extends ServiceProvider
 {
@@ -14,9 +14,9 @@ class FacadeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-     $this->app->bind('Invoice',function($app){
-        return new Invoice();
-     });   
+        $this->app->bind('Invoice', function ($app) {
+            return new Invoice();
+        });
     }
 
     /**
@@ -26,7 +26,7 @@ class FacadeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind('dateclass',Function(){
+        $this->app->bind('dateclass', function () {
             return new DateClass();
         });
     }

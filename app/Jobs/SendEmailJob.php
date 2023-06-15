@@ -2,14 +2,12 @@
 
 namespace App\Jobs;
 
+use App\Mail\SendEmailTest;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Mail\SendEmailTest;
-
 use Illuminate\Support\Facades\Mail;
 
 class SendEmailJob implements ShouldQueue
@@ -23,7 +21,7 @@ class SendEmailJob implements ShouldQueue
      */
     public function __construct()
     {
-      
+
     }
 
     /**
@@ -33,7 +31,7 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        $data ="This is Test Data";
+        $data = 'This is Test Data';
         Mail::to(['rajdeeprangra@gmail.com'])->send(
             new SendEmailTest(data: $data)
         );

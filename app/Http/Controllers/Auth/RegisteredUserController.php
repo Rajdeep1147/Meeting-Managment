@@ -44,6 +44,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        $user->assignRole('user');
+        $user->givePermissionTo(['create article', 'edit article', 'delete article']);
+
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);

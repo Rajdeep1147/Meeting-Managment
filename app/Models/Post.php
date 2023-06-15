@@ -12,17 +12,16 @@ class Post extends Model
     use HasFactory;
 
     public const ACTIVE = 1;
+
     public const DEACTIVE = 2;
 
-    
-    public function students() :BelongsTo
+    public function students(): BelongsTo
     {
-        return $this->belongsTo(Student::class,'student_id','id');
+        return $this->belongsTo(Student::class, 'student_id', 'id');
     }
-    
-   public function comments():HasMany
-   {
-        return $this->hasMany(Comment::class, 'post_id', 'id');
-   }
 
+   public function comments(): HasMany
+   {
+       return $this->hasMany(Comment::class, 'post_id', 'id');
+   }
 }

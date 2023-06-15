@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-           
 
         });
     }
@@ -30,7 +29,7 @@ return new class extends Migration
             $table->string('contact')->nullable();
             $table->text('address')->nullable();
             $table->boolean('status')->comment('1:Active,0:Inactive')->default(1);
-            $table->string('pincode',6);
+            $table->string('pincode', 6);
         });
     }
 };
