@@ -102,7 +102,7 @@ class ClassesController extends Controller
         $toHour.'-'.$fromHour;
     }
 
-    public function bookclass(Request $request, Classes $class)
+    public function bookclass(Classes $class)
     {
         $slotes = Slot::where('start_time', '=', $class->class_timing)->first();
 
