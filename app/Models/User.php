@@ -10,7 +10,6 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,HasRoles;
@@ -29,7 +28,8 @@ class User extends Authenticatable
         'contact',
         'pincode',
         'google_id',
-];
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -39,7 +39,8 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    protected $primaryKey ="id";
+
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that should be cast.
@@ -53,6 +54,4 @@ class User extends Authenticatable
     /**
      * @return HasMany
      */
-
-    
 }

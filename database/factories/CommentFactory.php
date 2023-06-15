@@ -17,9 +17,9 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'title'=>$this->faker->word(5,true),
-            'status'=>1,
-            'comment'=>$this->faker->sentence(),
+            'title' => $this->faker->word(5, true),
+            'status' => 1,
+            'comment' => $this->faker->sentence(),
         ];
     }
 }

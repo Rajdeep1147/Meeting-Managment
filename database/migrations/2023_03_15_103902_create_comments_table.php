@@ -22,8 +22,8 @@ return new class extends Migration
             $table->integer('status')->default(Comment::ACTIVE);
             $table->timestamps();
             $table->foreign('post_id')
-            ->references('id')->on('posts')
-            ->onDelete('cascade');
+                ->references('id')->on('posts')
+                ->onDelete('cascade');
         });
     }
 

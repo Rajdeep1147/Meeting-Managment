@@ -11,10 +11,11 @@ class Comment extends Model
     use HasFactory;
 
     public const ACTIVE = 1;
+
     public const DEACTIVE = 2;
-    
+
     public function post(): BelongsTo
     {
-        return $this->belongsTo(Post::class,'post_id','id');
+        return $this->belongsTo(Post::class, 'post_id', 'id');
     }
 }

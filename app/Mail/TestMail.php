@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Mail;
-use App\Models\User;
+
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
@@ -14,7 +12,9 @@ use Illuminate\Queue\SerializesModels;
 class TestMail extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $order;
+
     /**
      * Create a new message instance.
      *
@@ -33,7 +33,7 @@ class TestMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address(address:'Rajdeeprangra@gmail.com', name:'Rajdeep'),
+            from: new Address(address: 'Rajdeeprangra@gmail.com', name: 'Rajdeep'),
             subject: 'This is My Practice Mail',
         );
     }
@@ -47,7 +47,7 @@ class TestMail extends Mailable
     {
         return new Content(
             view: 'emails.test',
-           
+
         );
     }
 

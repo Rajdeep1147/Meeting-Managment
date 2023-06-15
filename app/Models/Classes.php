@@ -10,6 +10,7 @@ class Classes extends Model
     use HasFactory;
 
     public const BookingAvailable = 1;
+
     public const BookingFull = 0;
 
     protected $fillable = [
@@ -17,6 +18,6 @@ class Classes extends Model
         'class_timing',
         'class_date',
         'number_of_students',
-        'status'
+        'status',
     ];
 }

@@ -12,7 +12,6 @@ class Slot extends Model
     protected $fillable = [
         'date',
         'start_time',
-        'end_time'
-        ];
-    
+        'end_time',
+    ];
 }

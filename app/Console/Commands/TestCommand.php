@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\SendEmailJob;
 use App\Jobs\TestData;
 use App\Models\User;
 use Illuminate\Console\Command;
@@ -31,6 +30,7 @@ class TestCommand extends Command
     public function handle()
     {
         $this->testFunction();
+
         return 0;
     }
 
@@ -44,6 +44,5 @@ class TestCommand extends Command
         } else {
             $this->info('No user found with the specified email');
         }
-    }    
-    
+    }
 }

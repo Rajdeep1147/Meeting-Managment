@@ -35,6 +35,6 @@ return [
         'client_id' => env('GOOGLE_CLIENT_ID'), //USE FROM Google DEVELOPER ACCOUNT
         'client_secret' => env('GOOGLE_SECRET_ID'), //USE FROM Google DEVELOPER ACCOUNT
         'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
-],
+    ],
 
 ];

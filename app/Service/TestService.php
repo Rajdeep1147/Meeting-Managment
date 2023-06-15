@@ -1,11 +1,11 @@
 <?php
-namespace App\Service; 
+
+namespace App\Service;
 
 class TestService implements TestInterface
 {
     public function doSomething()
     {
-        echo "This is Test Provider";
+        echo 'This is Test Provider';
     }
 }
-?>

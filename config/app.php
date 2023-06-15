@@ -184,12 +184,12 @@ return [
 
         /*
          * Package Service Providers...
-         * 
+         *
          */
         App\Providers\TestServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         App\Providers\FacadeServiceProvider::class,
-      
+
         Bitfuses\Contact\ContactServiceProvider::class,
         /*
          * Application Service Providers...
@@ -217,8 +217,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Me'=> App\CustomFacade\InvoiceFacade::class,
+        'Me' => App\CustomFacade\InvoiceFacade::class,
     ])->toArray(),
-    
-     
+
 ];

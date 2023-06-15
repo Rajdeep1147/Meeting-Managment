@@ -1,8 +1,8 @@
-<?php 
+<?php
+
 namespace App\Service;
 
-Interface TestInterface
+interface TestInterface
 {
     public function doSomething();
 }
-?>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Slot;
 use Illuminate\Http\Request;
 
@@ -15,7 +14,9 @@ class SlotController extends Controller
      */
     public function index()
     {
-        //
+        $slote = Slot::get();
+
+        return $slote;
     }
 
     /**
@@ -25,27 +26,26 @@ class SlotController extends Controller
      */
     public function create()
     {
-       
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $add_slot = Slot::create([
-            'date'=> $request->date,
-            'start_time'=> $request->start_time,
-            'end_time'=> $request->end_time,
+            'date' => $request->date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
         ]);
 
-        if(!$add_slot){
-            return response()->json("Error in creating slot",403);
-        }else{
-            return response()->json($add_slot,200);
+        if (! $add_slot) {
+            return response()->json('Error in creating slot', 403);
+        } else {
+            return response()->json($add_slot, 200);
         }
     }
 
@@ -74,7 +74,6 @@ class SlotController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

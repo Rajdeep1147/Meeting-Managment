@@ -13,8 +13,8 @@ class TestServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Service\TestInterface','App\Service\TestService');
-            
+        $this->app->bind('App\Service\TestInterface', 'App\Service\TestService');
+
     }
 
     /**

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
-Use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-Use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
@@ -19,38 +18,39 @@ class GoogleController extends Controller
 
     public function callBackFromGoogle()
     {
-        try{
+        try {
             $user = Socialite::driver('google')->user();
-            
-            $is_user = User::where('email',$user->getEmail())->first();
-            
-            if(!$is_user){
-                $saveUser =  User::updateOrCreate(
+
+            $is_user = User::where('email', $user->getEmail())->first();
+
+            if (! $is_user) {
+                $saveUser = User::updateOrCreate(
                     [
-                        'google_id'=>$user->getId()
+                        'google_id' => $user->getId(),
                     ],
                     [
-                        'name'=>$user->getName(),
-                        'email'=>$user->getEmail(),
-                        'password'=>Hash::make($user->getName().'@'.$user->getId())
+                        'name' => $user->getName(),
+                        'email' => $user->getEmail(),
+                        'password' => Hash::make($user->getName().'@'.$user->getId()),
 
                     ]
-                    );
-            }else{
-                
-                    User::where('email',$user->getEmail())->update([
-                        'google_id'=>$user->getId(),
-                    ]);
+                );
+            } else {
 
-                    $saveUser = User::where('email',$user->getEmail())->first();
+                User::where('email', $user->getEmail())->update([
+                    'google_id' => $user->getId(),
+                ]);
+
+                $saveUser = User::where('email', $user->getEmail())->first();
             }
 
             $userid = Auth::loginUsingId($saveUser->id);
             $user = Auth::user();
             Session::put('username', $user->id);
+
             return redirect()->route('home');
-        }catch(\Throwable $th){
+        } catch (\Throwable $th) {
             throw $th;
         }
-    } 
+    }
 }

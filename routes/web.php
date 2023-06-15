@@ -22,7 +22,6 @@ Route::group(['middleware' => ['auth:student']], function () {
     // Admin routes here
 });
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

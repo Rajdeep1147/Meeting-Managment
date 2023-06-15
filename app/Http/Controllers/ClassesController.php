@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classes;
-use App\Http\Controllers\Controller;
 use App\Models\Slot;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use PhpParser\Builder\Class_;
 
 class ClassesController extends Controller
 {
@@ -18,7 +16,9 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        //
+        $getClasses = Classes::all();
+
+        return $getClasses;
     }
 
     /**
@@ -34,7 +34,6 @@ class ClassesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,8 +45,8 @@ class ClassesController extends Controller
             'number_of_students' => $request->number_of_students,
             'status' => $request->status,
         ]);
-        if (!$add_class) {
-            return response()->json("Error in creating class", 403);
+        if (! $add_class) {
+            return response()->json('Error in creating class', 403);
         } else {
             return response()->json($add_class, 200);
         }
@@ -56,7 +55,6 @@ class ClassesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Classes  $classes
      * @return \Illuminate\Http\Response
      */
     public function show(Classes $classes)
@@ -67,7 +65,6 @@ class ClassesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Classes  $classes
      * @return \Illuminate\Http\Response
      */
     public function edit(Classes $classes)
@@ -78,8 +75,6 @@ class ClassesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Classes  $classes
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Classes $classes)
@@ -90,7 +85,6 @@ class ClassesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Classes  $classes
      * @return \Illuminate\Http\Response
      */
     public function destroy(Classes $classes)
@@ -105,35 +99,34 @@ class ClassesController extends Controller
         $end_time = $slots[0]->end_time;
         $toHour = date('H', strtotime($start_time));
         $fromHour = date('H', strtotime($end_time));
-        $toHour . '-' . $fromHour;
+        $toHour.'-'.$fromHour;
     }
 
-    public function bookclass(Request $request)
+    public function bookclass(Request $request, Classes $class)
     {
+        $slotes = Slot::where('start_time', '=', $class->class_timing)->first();
 
-        $start_time = $request->start_time;
-        $slotes = Slot::where('start_time', '=', $start_time)->first();
-        if (!$slotes) {
-            return "No class slot on this time";
+        if (! $slotes) {
+            return 'No class slot on this time';
         }
-        $time = Carbon::createFromFormat('H:i:s', $slotes->start_time)->format('H:i');
 
-        if ($start_time == $time) {
+        $time = Carbon::createFromFormat('H:i:s', $slotes->start_time)->format('H:i:s');
 
-            $class_data = Classes::all();
-            $time = Carbon::parse($class_data[0]->class_timing)->format('H:i');
-            $check_class_availbity = Classes::where('class_timing', '=', $time)->first();
-            if($check_class_availbity->number_of_students >= 10)
-            {
-                $check_class_availbity->status = Classes::BookingFull;
-                $check_class_availbity->save();
-                return "Class Slots are Full";
-            }
-            $check_class_availbity->number_of_students += 1;
-            $check_class_availbity->status = Classes::BookingAvailable;
+        $class_data = Classes::where('id', $class->id)->first();
 
-            $check_class_availbity->save();
-            return "your slot has been booked";
+        $time = Carbon::parse($class_data->class_timing)->format('H:i:s');
+
+        if ($class_data->number_of_students >= 10) {
+            $class_data->status = Classes::BookingFull;
+            $class_data->save();
+
+            return 'Class Slots are Full';
         }
+        $class_data->number_of_students += 1;
+        $class_data->status = Classes::BookingAvailable;
+
+        $class_data->save();
+
+        return 'your slot has been booked';
     }
 }

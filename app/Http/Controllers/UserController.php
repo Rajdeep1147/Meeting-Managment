@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestMail;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-use App\Models\User;
-use App\Mail\TestMail;  
-
 
 class UserController extends Controller
 {
@@ -17,22 +16,23 @@ class UserController extends Controller
     {
         dump(app()->getBindings());
 
-        if(Auth::check()){
+        if (Auth::check()) {
             return redirect('/main');
         }
+
         return view('register');
     }
 
     public function userRegister(Request $request)
     {
         $request->validate([
-            'name'=>'required|string|min:4|max:50',
-            'email'=>'string|required|unique:users|max:50',
-            'password'=>'required|min:4',
+            'name' => 'required|string|min:4|max:50',
+            'email' => 'string|required|unique:users|max:50',
+            'password' => 'required|min:4',
         ]);
 
-        $order=([
-            "message"=>"This is new mail Format"
+        $order = ([
+            'message' => 'This is new mail Format',
         ]);
 
         $user = new User;
@@ -41,48 +41,47 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         // Mail::to('rajdeeprangra@gmail.com')->send(new TestMail($order));
-        return back()->with('success','Your Registration is Successfull');
+        return back()->with('success', 'Your Registration is Successfull');
     }
 
     public function userLogin(Request $request)
     {
-       
+
         $request->validate([
-            "email"=>'required|string',
-            "password"=>'required'
+            'email' => 'required|string',
+            'password' => 'required',
         ]);
 
-        $usecredential = $request->only('email','password');
-        
-        if(Auth::attempt($usecredential))
-        {
+        $usecredential = $request->only('email', 'password');
+
+        if (Auth::attempt($usecredential)) {
             $user = Auth::User();
-            
-            $mysession = Session::put('my',$user->id);
-            
+
+            $mysession = Session::put('my', $user->id);
+
             return redirect('/main');
-        }else{
-            return back()->with('error','User Name or Password is Incorrect');
+        } else {
+            return back()->with('error', 'User Name or Password is Incorrect');
         }
-        
+
     }
 
     public function loadLogin()
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             return redirect('/main');
         }
+
         return view('login');
     }
 
     public function main(Request $request)
     {
         $getsession = Session::has('my');
-           
-        
-        if(Auth::check()){
+
+        if (Auth::check()) {
             return view('main');
-        }else{
+        } else {
             return redirect('/');
         }
     }
@@ -91,6 +90,7 @@ class UserController extends Controller
     {
         $request->session()->flush();
         Auth::logout();
-        return redirect("/");
+
+        return redirect('/');
     }
 }
