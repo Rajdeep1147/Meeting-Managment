@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\Notification;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SlotController;
 use App\Http\Controllers\StudentController;
@@ -73,3 +75,5 @@ Route::resource('slot', SlotController::class);
 Route::middleware('auth:student')->group(function () {
 
 });
+
+Route::get('notification',[NotificationController::class,'sendNotification'])->name('send.notification');
